@@ -24,7 +24,7 @@ const Header = () => {
           Home
         </StyledLink>
         <StyledLink to="/films">
-          About
+          Movies
         </StyledLink>
       </nav>
     </header>

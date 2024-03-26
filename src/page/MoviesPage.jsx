@@ -1,9 +1,12 @@
-import React from 'react'
+import MovieInput from 'components/MovieInput';
+import React from 'react';
 
 const MoviesPage = () => {
   return (
-    <div>MoviesPage</div>
-  )
-}
+    <main>
+      <MovieInput />
+    </main>
+  );
+};
 
-export default MoviesPage
+export default MoviesPage;
