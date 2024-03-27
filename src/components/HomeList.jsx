@@ -1,27 +1,10 @@
-import { getTrendingMovies } from 'moviesAPI';
-import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const HomeList = () => {
-  const [movies, setMovies] = useState(null);
-
-  useEffect(() => {
-    getMovies();
-  }, []);
-
-  const getMovies = async () => {
-    try {
-      const data = await getTrendingMovies();
-      setMovies(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+const HomeList = ({ movies }) => {
   return (
     <ul className="list-group list-group-flush">
       {movies &&
-        movies.results.map(film => (
+        movies.map(film => (
           <li className="list-group-item" key={film.id}>
             <Link
               to={`films/${film.id}`}

@@ -1,6 +1,6 @@
 import { getFilm } from 'moviesAPI';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 
 const Film = () => {
   const [film, setFilm] = useState({});
@@ -10,7 +10,7 @@ const Film = () => {
     const getFilmInformation = async () => {
       try {
         const { data } = await getFilm(movieId);
-        console.log(data);
+        // console.log(data);
         setFilm(data);
       } catch (error) {
         console.log(error);
@@ -50,6 +50,15 @@ const Film = () => {
           </div>
         </div>
       )}
+      <ul>
+        <li>
+          <Link to="cast">Cast</Link>
+        </li>
+        <li>
+          <Link to="reviews">Reviews</Link>
+        </li>
+      </ul>
+      <Outlet />
     </div>
   );
 };

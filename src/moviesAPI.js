@@ -10,7 +10,7 @@ export const getTrendingMovies = async () => {
   return data;
 };
 
-export const getFilm = async (movieId) => {
+export const getFilm = async movieId => {
   const data = await axios.get(
     `${BASE_URL}movie/${movieId}?api_key=${API_KEY}`
   );
@@ -24,4 +24,16 @@ export const getFilmByQuery = async query => {
   return data;
 };
 
+export const getReviews = async movieId => {
+  const { data } = await axios.get(
+    `${BASE_URL}movie/${movieId}/reviews?api_key=${API_KEY}`
+  );
+  return data;
+};
 
+export const getCast = async movieId => {
+  const { data } = await axios.get(
+    `${BASE_URL}movie/${movieId}/credits?api_key=${API_KEY}`
+  );
+  return data;
+};

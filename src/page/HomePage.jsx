@@ -1,10 +1,26 @@
 import HomeList from 'components/HomeList';
-import React from 'react';
+import { getTrendingMovies } from 'moviesAPI';
+import React, { useEffect, useState } from 'react';
 
 const HomePage = () => {
+  const [movies, setMovies] = useState(null);
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  const getMovies = async () => {
+    try {
+      const data = await getTrendingMovies();
+      setMovies(data.results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <main>
-      <HomeList />
+      <HomeList movies={movies} />
     </main>
   );
 };
