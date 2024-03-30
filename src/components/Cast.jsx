@@ -22,7 +22,6 @@ const Cast = () => {
 
   return (
     <section>
-      {cast.length > 0 ? (
         <div style={{ marginLeft: '20px' }}>
           {cast.map(item => (
             <div
@@ -42,9 +41,6 @@ const Cast = () => {
             </div>
           ))}
         </div>
-      ) : (
-        <p className="card-text">Not found</p>
-      )}
     </section>
   );
 };

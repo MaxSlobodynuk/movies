@@ -1,19 +1,14 @@
 import { getFilmByQuery } from 'moviesAPI';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import HomeList from './HomeList';
 
 const MovieInput = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const firstRender = useRef(true);
+  
   const query = searchParams.get('query') ?? '';
-
-
-  const handleChange = ({ target }) => {
-    target.value
-      ? setSearchParams({ query: target.value })
-      : setSearchParams({});
-  };
 
   const getFilm = async query => {
     try {
@@ -22,6 +17,17 @@ const MovieInput = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  useEffect(() => {
+    query && firstRender.current && getFilm(query);
+  }, [query]);
+
+  const handleChange = ({ target }) => {
+    target.value
+      ? setSearchParams({ query: target.value })
+      : setSearchParams({});
+    firstRender.current = false;
   };
 
   const handleSubmit = e => {

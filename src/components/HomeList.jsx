@@ -1,8 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 
 const HomeList = ({ movies }) => {
-  const location = useLocation()
-  console.log('location :>> ', location);
+  const location = useLocation();
+
   return (
     <ul className="list-group list-group-flush">
       {movies &&
@@ -10,7 +10,7 @@ const HomeList = ({ movies }) => {
           <li className="list-group-item" key={film.id}>
             <Link
               to={`/movies/${film.id}`}
-              state={{from: location}}
+              state={{ from: location }}
               className="list-group-item list-group-item-action"
             >
               {film.name || film.original_title}
