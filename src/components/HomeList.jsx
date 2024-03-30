@@ -1,13 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const HomeList = ({ movies }) => {
+  const location = useLocation()
+  console.log('location :>> ', location);
   return (
     <ul className="list-group list-group-flush">
       {movies &&
         movies.map(film => (
           <li className="list-group-item" key={film.id}>
             <Link
-              to={`films/${film.id}`}
+              to={`/movies/${film.id}`}
+              state={{from: location}}
               className="list-group-item list-group-item-action"
             >
               {film.name || film.original_title}

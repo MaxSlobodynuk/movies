@@ -8,6 +8,7 @@ const MovieInput = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
+
   const handleChange = ({ target }) => {
     target.value
       ? setSearchParams({ query: target.value })

@@ -1,10 +1,12 @@
 import { getFilm } from 'moviesAPI';
-import React, { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 const Film = () => {
   const [film, setFilm] = useState({});
   const { movieId } = useParams();
+  const location = useLocation();
+const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     const getFilmInformation = async () => {
@@ -21,6 +23,13 @@ const Film = () => {
 
   return (
     <div>
+      <Link
+        className="btn btn-primary mb-3"
+        to={backLinkLocationRef.current}
+        role="button"
+      >
+        ◀ go back
+      </Link>
       {film.id && (
         <div className="card mb-3" style={{ maxWidth: '700px' }}>
           <div className="row g-0">
